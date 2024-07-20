@@ -42,28 +42,6 @@
 
 /* App.css */
 
-.Login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f0f0f0;
-}
-
-.Login h2 {
-  margin-bottom: 20px;
-}
-
-.Login form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Login form div {
-  margin-bottom: 10px;
-}
 
 .p-button {
   margin: 10px;
@@ -74,4 +52,3 @@
   left: 70vw !important;
   margin-top: 10px !important;
 }
-

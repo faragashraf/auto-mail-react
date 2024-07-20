@@ -11,6 +11,7 @@ import { ConfirmDialog } from 'primereact/confirmdialog';
 
 const Navbar = () => {
     const [visible, setVisible] = useState(false);
+    const [userImage] = useState(localStorage.getItem('userImag') || '');
     const toast = useRef(null);
     const menu = useRef(null);
 
@@ -24,9 +25,10 @@ const Navbar = () => {
 
 
     const items = [
-        { label: 'Home', icon: 'pi pi-fw pi-home' },
-        { label: 'Profile', icon: 'pi pi-fw pi-user' },
-        { label: 'Settings', icon: 'pi pi-fw pi-cog', },
+        { label: 'Users', icon: 'pi pi-users',items:[
+            { label: 'Add New User', icon: 'pi pi-pencil', command: ()=>{handleAddUser()} },
+            { label: 'Users List', icon: 'pi pi-list', command: ()=>{handleuserList()} }
+        ] },
         {
             label: 'Click Me', icon: 'pi pi-fw pi-cog', command: () => {
                 toast.current.show({ severity: 'success', summary: 'Success', detail: 'File created', life: 3000 });
@@ -40,9 +42,17 @@ const Navbar = () => {
         navigate('/login');
     };
 
+    const handleAddUser = () => {
+        navigate('/addNewUser');
+    };
+    
+    const handleuserList = () => {
+        navigate('/userList');
+    };
+
     const Tiereditems = [
-        { label: 'Profile', icon: 'pi pi-fw pi-home' },
-        {
+        { label: 'Profile', icon: 'pi pi-fw pi-home' ,command:()=> navigate(`/users/${localStorage.getItem('UserId')}`)},
+              {
             label: 'Click Me', icon: 'pi pi-fw pi-cog', command: () => {
                 toast.current.show({ severity: 'success', summary: 'Success', detail: 'File created', life: 3000 });
             }
@@ -61,11 +71,11 @@ const Navbar = () => {
                 header="Confirmation" icon="pi pi-exclamation-triangle" accept={accept} reject={reject} />
             <TieredMenu model={Tiereditems} popup ref={menu} breakpoint="767px" />
             <Button rounded severity="success" onClick={(e) => menu.current.toggle(e)} >
-                <Avatar image="https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png" shape="circle" />
+                <Avatar image={userImage} shape="circle" />
             </Button>
         </div>
     );
-
+    // "https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png"
     return (
         <div className="card">
             <Toast ref={toast} />
