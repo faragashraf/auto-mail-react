@@ -539,7 +539,9 @@ dialog[open] {
 .login-spaceBetween label{
   font-size: larger;
 }
-
+.red-alert{
+	color: red;
+}
 /* Login End */
 
 /* IMPORTED STYLES */
