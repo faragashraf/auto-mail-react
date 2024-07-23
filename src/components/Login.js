@@ -20,18 +20,16 @@ const Login = ({ onLogin }) => {
                 password: string().required("This field is required")
             })
             ,
-            onSubmit: (values) => console.log(values)
+            onSubmit: (values) => { handleLogin(values); console.log(values); }
         }
     )
-    const [name, setUsername] = useState('');
-    const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const handleLogin = () => {
+    const handleLogin = ({username, password}) => {
         setError('');
         setLoading(true);
-        authenticate({ name, password })
+        authenticate({username, password})
             .then((resp) => {
                 console.log(resp)
                 if (resp.data.id != null && resp.data.id.length > 0) {
